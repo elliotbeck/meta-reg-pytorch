@@ -10,13 +10,17 @@ from train import validate_epoch, train_one_epoch_metatrain, train_one_epoch_ful
 parser = argparse.ArgumentParser(description='PACS')
 parser.add_argument('--hidden_dim', type=int, default=256)
 parser.add_argument('--batch_size', type=int, default=8)
-parser.add_argument('--l2_regularizer_weight', type=float,default=0.001)
 parser.add_argument('--lr', type=float, default=0.001)
 parser.add_argument('--epochs_metatrain', type=int, default=10)
 parser.add_argument('--epochs_full', type=int, default=15)
 parser.add_argument('--num_classes', type=int, default=7)
 parser.add_argument('--meta_train_steps', type=int, default=20)
 flags = parser.parse_args()
+
+#print setup
+print('Flags:')
+for k,v in sorted(vars(flags).items()):
+  print("\t{}: {}".format(k, v))
 
 # load data
 dataset1 = HDF5Dataset('/cluster/work/math/ebeck/data/pacs/art_painting_train.hdf5')

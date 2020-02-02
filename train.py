@@ -178,6 +178,7 @@ def train_one_epoch_metatrain(model_task1, model_task2, model_task3, model_regul
 
 def train_step_full(input, model_final, model_regularizer, loss_function ,optimizer_final):
     inputs, labels = input
+    model_final = model_final.train()
     # get classification loss for model_final 
     loss_final_classification = loss_function(model_final(inputs), torch.tensor(torch.squeeze(labels), 
                                     dtype=torch.long).cuda())

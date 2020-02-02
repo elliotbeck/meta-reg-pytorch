@@ -59,29 +59,6 @@ def validate_epoch(data_train, data_test, model, loss_function):
 
     return loss_train, accuracy_train, loss_test, accuracy_test
 
-    # get test error and accuracy
-    with torch.no_grad():
-        for i, data in enumerate(data_test, 1):
-            # get the inputs; data is a list of [inputs, labels]
-            inputs, labels = data
-            # forward
-            outputs = model(inputs)
-            # get loss per domain
-            loss = loss_function(outputs, torch.tensor(torch.squeeze(labels), dtype=torch.long).cuda())
-            # get mean loss
-            loss_test += loss
-            # get accuracy per domain
-            accuracy = mean_accuracy(outputs, labels)
-            # append mean accuracy
-            accuracy_test += accuracy
-
-    accuracy_test = (accuracy_test/i).detach().cpu().numpy()
-    loss_test = (loss_test/i).detach().cpu().numpy()
-
-    return loss_train, accuracy_train, loss_test, accuracy_test
-
-
-
 def train_step1(model_task1, model_task2, model_task3, input1, input2, input3, optimizer_task1, 
                 optimizer_task2, optimizer_task3, loss_function):
     inputs1, labels1 = input1

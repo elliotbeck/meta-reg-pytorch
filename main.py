@@ -23,7 +23,7 @@ for k,v in sorted(vars(flags).items()):
   print("\t{}: {}".format(k, v))
 
 # load data
-dataset1 = HDF5Dataset('/cluster/work/math/ebeck/data/pacs/art_painting_train.hdf5')
+dataset1 = HDF5Dataset('/cluster/work/math/ebeck/data/pacs/photo_train.hdf5')
 train_data1 = data.DataLoader(dataset1, num_workers=1, batch_size=flags.batch_size, 
                               shuffle=True, drop_last=True)
 dataset2 = HDF5Dataset('/cluster/work/math/ebeck/data/pacs/cartoon_train.hdf5')
@@ -35,7 +35,7 @@ train_data3 = data.DataLoader(dataset3, num_workers=1, batch_size=flags.batch_si
 train_data_full = data.DataLoader(data.ConcatDataset([dataset1, dataset2, dataset3]), 
                                                     num_workers=1, batch_size=flags.batch_size, 
                                                     shuffle=True, drop_last=True)
-dataset = HDF5Dataset('/cluster/work/math/ebeck/data/pacs/photo_test.hdf5')
+dataset = HDF5Dataset('/cluster/work/math/ebeck/data/pacs/art_painting_test.hdf5')
 test_data = data.DataLoader(dataset, num_workers=1, batch_size=flags.batch_size, 
                               shuffle=True, drop_last=True)
 
